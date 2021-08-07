@@ -7,24 +7,20 @@ library(tidyverse)
 
 # ENSURE THAT YOU USE READ.DELIM WITH ALL THE PARAMETERS SPECIFIED!
 
-data = read.delim("ebd_IN_202001_202012_relMay-2021.txt", sep = "\t", 
-                  header = T, quote = "", 
-                  stringsAsFactors = F, na.strings = c(""," ",NA))
-
 preimp = c("GLOBAL.UNIQUE.IDENTIFIER","CATEGORY","COMMON.NAME","SCIENTIFIC.NAME","OBSERVATION.COUNT",
            "LOCALITY.ID","LOCALITY.TYPE","REVIEWED","APPROVED","STATE","COUNTY","LAST.EDITED.DATE",
            "LATITUDE","LONGITUDE","OBSERVATION.DATE","TIME.OBSERVATIONS.STARTED","OBSERVER.ID",
            "PROTOCOL.TYPE","DURATION.MINUTES","EFFORT.DISTANCE.KM","LOCALITY","HAS.MEDIA","BREEDING.CODE",
            "NUMBER.OBSERVERS","ALL.SPECIES.REPORTED","GROUP.IDENTIFIER","SAMPLING.EVENT.IDENTIFIER")
 
-nms = read.delim("ebd_IN_202105_202105_relMay-2021.txt", nrows = 1, sep = "\t", header = T, 
+nms = read.delim("ebd_IN_202001_202012_relJun-2021.txt", nrows = 1, sep = "\t", header = T, 
                  quote = "", stringsAsFactors = F, 
                  na.strings = c(""," ",NA))
 nms = names(nms)
 nms[!(nms %in% preimp)] = "NULL"
 nms[nms %in% preimp] = NA
 
-data = read.delim("ebd_IN_202105_202105_relMay-2021.txt", colClasses = nms, sep = "\t", 
+data = read.delim("ebd_IN_202001_202012_relJun-2021.txt", colClasses = nms, sep = "\t", 
                   header = T, quote = "", 
                   stringsAsFactors = F, na.strings = c(""," ",NA))
 
@@ -57,7 +53,7 @@ library(tidyverse)
 load("data2020.RData") ### state names are capitalized in my specific case only, not for you
 
 data1 = data %>%
-  filter(STATE == "KARNATAKA")
+  filter(STATE == "Karnataka")
 
 
 # using a histogram - check the number of times each day is repeated
