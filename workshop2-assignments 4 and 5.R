@@ -93,9 +93,9 @@ barplot(data5$count,data5$month,width = 2,space = NULL)
 
 data6 = data1 %>%
   filter(ALL.SPECIES.REPORTED == 1) %>%
-  group_by(month) %>% mutate(lists = n()) %>%
+  group_by(month) %>% mutate(lists = n_distinct(group.id)) %>% ungroup() %>%
   filter(CATEGORY == "species" | CATEGORY == "issf") %>%
-  group_by(month,COMMON.NAME) %>% summarize(freq = n()/max(lists)) %>%
+  group_by(month,COMMON.NAME) %>% summarize(freq = n_distinct(group.id)/max(lists)) %>%
   group_by(month) %>% arrange(desc(freq)) %>% slice(1:5)
 
 

@@ -61,9 +61,9 @@ data1 = data %>%
 data2 = data %>%
   filter(STATE == "Karnataka") %>%
   filter(ALL.SPECIES.REPORTED == 1) %>%
-  mutate(lists = n()) %>%
+  mutate(lists = n_distinct(group.id)) %>%
   filter(CATEGORY == "species" | CATEGORY == "issf") %>%
-  group_by(COMMON.NAME) %>% summarize(freq = n()/max(lists)) %>%
+  group_by(COMMON.NAME) %>% summarize(freq = n_distinct(group.id)/max(lists)) %>%
   arrange(desc(freq))
 
 ## WHY IS THERE A DISCREPENCY BETWEEN NO. OF SPECIES FROM KARNATAKA
@@ -83,10 +83,9 @@ districts = data %>% filter(STATE == "Karnataka") %>%
 data.frame(districts)
 
 data3 = data %>%
-  filter(STATE == "Karnataka", COUNTY == "Bangalore") %>%
-  filter(ALL.SPECIES.REPORTED == 1) %>%
-  mutate(lists = n()) %>%
+  filter(STATE == "Karnataka", COUNTY == "Bangalore", ALL.SPECIES.REPORTED == 1) %>%
+  mutate(lists = n_distinct(group.id)) %>%
   filter(CATEGORY == "species" | CATEGORY == "issf") %>%
-  group_by(COMMON.NAME) %>% summarize(freq = n()/max(lists)) %>%
+  group_by(COMMON.NAME) %>% summarize(freq = n_distinct(group.id)/max(lists)) %>%
   arrange(desc(freq))
 
