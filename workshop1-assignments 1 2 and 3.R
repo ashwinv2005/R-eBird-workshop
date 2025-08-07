@@ -7,10 +7,6 @@ library(tidyverse)
 
 # ENSURE THAT YOU USE READ.DELIM WITH ALL THE PARAMETERS SPECIFIED!
 
-data = read.delim("ebd_IN_202105_202105_relMay-2021.txt", sep = "\t", 
-                  header = T, quote = "", 
-                  stringsAsFactors = F, na.strings = c(""," ",NA))
-
 preimp = c("GLOBAL.UNIQUE.IDENTIFIER","CATEGORY","COMMON.NAME","SCIENTIFIC.NAME","OBSERVATION.COUNT",
            "LOCALITY.ID","LOCALITY.TYPE","REVIEWED","APPROVED","STATE","COUNTY","LAST.EDITED.DATE",
            "LATITUDE","LONGITUDE","OBSERVATION.DATE","TIME.OBSERVATIONS.STARTED","OBSERVER.ID",
